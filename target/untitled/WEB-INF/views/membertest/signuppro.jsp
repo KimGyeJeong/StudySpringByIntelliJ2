@@ -20,5 +20,9 @@
     result : ${result} <br>
 </div>
 
+<div>
+    <button onclick="window.location='/membertest/main'">Go main</button>
+</div>
+
 </body>
 </html>

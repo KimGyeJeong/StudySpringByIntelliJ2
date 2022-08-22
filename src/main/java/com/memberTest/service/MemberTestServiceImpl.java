@@ -34,37 +34,77 @@ public class MemberTestServiceImpl implements MemberTestService {
     @Override
     public MemberTestDTO getmemberInfo(MemberTestDTO member) {
 
-        String id = (String)RequestContextHolder.getRequestAttributes().getAttribute("memId",RequestAttributes.SCOPE_SESSION);
+        String id = (String) RequestContextHolder.getRequestAttributes().getAttribute("memId", RequestAttributes.SCOPE_SESSION);
         member.setId(id);
 
-        System.out.println("Impl... id : "+id);
+        System.out.println("Impl... id : " + id);
 
         if (member != null)
             member = mapper.getmemberInfo(member);
 
-        System.out.println("Impl.getmemberInfo. member : "+member);
+        System.out.println("Impl.getmemberInfo. member : " + member);
 
         return member;
     }
 
-    public MemberTestDTO updatemember(MemberTestDTO member, String pwchange){
+    public MemberTestDTO updatemember(MemberTestDTO member, String pwchange) {
 
-        String id = (String)RequestContextHolder.getRequestAttributes().getAttribute("memId",RequestAttributes.SCOPE_SESSION);
+        String id = (String) RequestContextHolder.getRequestAttributes().getAttribute("memId", RequestAttributes.SCOPE_SESSION);
 
         member.setId(id);
 
-        System.out.println("member.getPw() : "+member.getPw());
-        System.out.println("pwchange : "+pwchange);
+        System.out.println("member.getPw() : " + member.getPw());
+        System.out.println("pwchange : " + pwchange);
         System.out.println("member... " + member.toString());
 
-        if(member.getPw().equals(pwchange)) {
+        if (member.getPw().equals(pwchange)) {
             mapper.updatemember(member);
             //실행해서 담아준데이터가 가는게 아니라 중간에 세팅해준 dto 가 가서 출력되는중
             System.out.println("일치하지않는데 외 실행함 ㄷㄷ");
-        }else{
+        } else {
+            member.setGender(null);
             System.out.println("비밀번호 불일치!");
         }
 
         return member;
+    }
+
+    public int logoutmember() {
+
+        int result = 0;
+        RequestContextHolder.getRequestAttributes().removeAttribute("memId", RequestAttributes.SCOPE_SESSION);
+
+        if (RequestContextHolder.getRequestAttributes().getAttribute("memId", RequestAttributes.SCOPE_SESSION) == null) {
+            System.out.println("NULLLLLLLLLL");
+            return 1;
+        } else {
+            System.out.println("NotNULLL");
+            return 2;
+        }
+    }
+
+    @Override
+    public int deleteMember(String pw) {
+        String id = (String)RequestContextHolder.getRequestAttributes().getAttribute("memId",RequestAttributes.SCOPE_SESSION);
+
+        MemberTestDTO member = new MemberTestDTO();
+        member.setId(id);
+        member.setPw(pw);
+        mapper.deleteMember(member);
+
+        logoutmember();
+
+        return 0;
+    }
+
+    @Override
+    public int deleteMemberChk(String pw) {
+        String id = (String)RequestContextHolder.getRequestAttributes().getAttribute("memId",RequestAttributes.SCOPE_SESSION);
+
+        MemberTestDTO member = new MemberTestDTO();
+        member.setId(id);
+        member.setPw(pw);
+        int result = mapper.idpwChk(member);
+        return result;
     }
 }

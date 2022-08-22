@@ -26,7 +26,7 @@
                 <td><input type="password" name="pw" id=""></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="log in"><input type="button" value="go main" onclick="window.location='/membertest/main"></td>
+                <td colspan="2"><input type="submit" value="log in"><input type="button" value="go main" onclick="window.location='/membertest/main'"></td>
             </tr>
         </table>
     </form>

@@ -11,4 +11,10 @@ public interface MemberTestService {
     public MemberTestDTO getmemberInfo(MemberTestDTO member);
 
     public MemberTestDTO updatemember(MemberTestDTO member, String pwchange);
+
+    public int logoutmember();
+
+    public int deleteMember(String pw);
+
+    public int deleteMemberChk(String pw);
 }

@@ -11,4 +11,6 @@ public interface MemberTestMapper {
     public MemberTestDTO getmemberInfo(MemberTestDTO member);
 
     public MemberTestDTO updatemember(MemberTestDTO member);
+
+    public int deleteMember(MemberTestDTO member);
 }

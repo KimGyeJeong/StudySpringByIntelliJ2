@@ -12,19 +12,34 @@ ERROR발생... 참조 링크..https://blog.woniper.net/2s47
  -->
 <mapper namespace="com.memberTest.persistence.MemberTestMapper">
     <insert id="insertMember">
-        insert into springmember values (#{id}, #{pw}, #{name}, #{gender},#{email},sysdate)
+        insert into springmember
+        values (#{id}, #{pw}, #{name}, #{gender}, #{email}, sysdate)
     </insert>
 
     <select id="idpwChk" resultType="int">
-        select count(*) from springmember where id=#{id} and pw=#{pw}
+        select count(*) from springmember where id=#{id}
+        <if test="pw!=null"> and pw=#{pw}</if>
     </select>
 
     <select id="getmemberInfo" resultType="com.memberTest.domain.MemberTestDTO">
-        select * from springmember where id=#{id}
+        select *
+        from springmember
+        where id = #{id}
     </select>
 
     <update id="updatemember">
-        update springmember set pw=#{pw}, name=#{name}, email=#{email} where id=#{id}
+        update springmember
+        set pw=#{pw},
+            name=#{name},
+            email=#{email}
+        where id = #{id}
     </update>
+
+    <delete id="deleteMember">
+        delete
+        from springmember
+        where id = #{id}
+          and pw = #{pw}
+    </delete>
 
 </mapper>

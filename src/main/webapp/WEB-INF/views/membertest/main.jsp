@@ -29,6 +29,9 @@
                 <tr>
                     <td><a href="/membertest/logout">로그아웃</a></td>
                 </tr>
+                <tr>
+                    <td><a href="/membertest/delete">회원 탈퇴</a></td>
+                </tr>
             </table>
         </div>
     </c:if>
@@ -45,6 +48,7 @@
         </div>
     </c:if>
     </div>
+
 
 
 </div>

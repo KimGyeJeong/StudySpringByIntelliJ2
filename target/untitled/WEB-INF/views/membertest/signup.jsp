@@ -9,6 +9,7 @@
 <html>
 <head>
     <title>signup</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
 <h1>Signup Page</h1>
@@ -22,11 +23,11 @@
             </tr>
             <tr>
                 <td>비밀번호 :</td>
-                <td><input type="password" name="pw" id=""></td>
+                <td><input type="password" name="pw" id="pw"></td>
             </tr>
             <tr>
                 <td>비밀번호 확인 :</td>
-                <td><input type="password" name="pwck" id=""></td>
+                <td><input type="password" name="pwck" id="pwck"></td>
             </tr>
             <tr>
                 <td>이름</td>
@@ -44,15 +45,36 @@
                 <td><input type="email" name="email" id=""></td>
             </tr>
             <tr>
-                <td colspan="2"><input type="submit" value="회원가입"><input type="reset" value="재작성"><input type="button"
-                                                                                                         value="취소"
-                                                                                                         onclick="window.location='/membertest/main'">
+                <td colspan="2" class="hereInputTagSubmit"><input type="reset" value="재작성"><input type="button"
+                                                                                                  value="취소"
+                                                                                                  onclick="window.location='/membertest/main'">
                 </td>
             </tr>
         </table>
 
     </form>
 </div>
+
+<script !src="">
+    $(document).ready(function () {
+        $("#pwck").change(function () {
+            let pwVal_signup = $("#pw").val();
+            let pwVal_signuptext = $("#pw").text();
+            let pwckVal_signup = $("#pwck").val();
+
+            console.log(typeof (pwVal_signup));     //string
+            console.log(typeof (pwVal_signuptext)); //string
+            console.log(typeof (pwckVal_signup));   //string
+
+            console.log(pwVal_signup);              //1234
+            console.log(pwVal_signuptext);          //
+            console.log(pwckVal_signup);            //2345
+
+            if (pwVal_signup === pwckVal_signup)
+                $(".hereInputTagSubmit").before("<input type='submit' value='회원가입'>");
+        })
+    })
+</script>
 
 </body>
 </html>
