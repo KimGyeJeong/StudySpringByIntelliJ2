@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--
+<mapper namespace="com.memberTest.persistence.MemberTestMapper">
+ERROR발생... 참조 링크..https://blog.woniper.net/247
+ -->
+<mapper namespace="MemberTestMapper">
+    <insert id="insertMember">
+        insert into springmember values (#{id}, #{pw}, #{name}, #{gender},#{email},sysdate)
+    </insert>
+
+    <select id="idpwChk" resultType="int">
+        select count(*) from springmember where id=#{id} and pw=#{pw}
+    </select>
+
+</mapper>
