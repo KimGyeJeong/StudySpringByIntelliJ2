@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.memberTest.persistence.BoardTestMapper">
+    <select id="getAll" resultType="com.memberTest.domain.BoardTestVO">
+        select *
+        from springboard
+    </select>
+
+    <insert id="insertboard">
+        insert into springboard
+        values (board_seq.nextval, #{title}, #{content}, #{writer}, sysdate)
+    </insert>
+
+    <select id="getOne" resultType="com.memberTest.domain.BoardTestVO">
+        select *
+        from springboard
+        where bno = #{bno}
+    </select>
+
+    <update id="modify">
+        update springboard
+        set content=#{content}, title=#{title}
+        where bno=#{bno}
+    </update>
+</mapper>

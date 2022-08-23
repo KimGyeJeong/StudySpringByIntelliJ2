@@ -13,7 +13,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class TestController {
 
     @GetMapping("testjquery1")
-    public void test1(){
+    public String test1(){
 
+
+        return "/test/testjquery1";
+    }
+
+    @GetMapping("testcat")
+    public String cccccccccccccc(){
+        log.info("wwwwwwwwwwwwwwwwwwwwwww");
+
+        return "/test/testcat";
     }
 }

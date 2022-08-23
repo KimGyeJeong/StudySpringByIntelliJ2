@@ -12,6 +12,9 @@
     <mvc:annotation-driven/> <!-- Annotation 활성화 -->
     <context:component-scan base-package="com.memberTest.controller"/> <!-- Component Package 지정 -->
 
+    <!-- 0823 추가 -->
+    <mvc:resources mapping="/resources/**" location="/resources/" />
+
     <!-- View Resolver 세팅 -->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="prefix" value="/WEB-INF/views/"/>

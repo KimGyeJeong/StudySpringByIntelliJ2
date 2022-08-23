@@ -12,19 +12,29 @@
 </head>
 <body>
 <h1>testjquery</h1>
-
-
+<div>WWWWW</div>
+<div>rr?</div>
 <div>
     src/main/resources/img/고양이.jpg
     <br><br><br>
-  <!--  <img src="/src/main/resources/img/고양이.jpg">
+    <br><img src="../src/main/webapp/resources/img/고양이.jpg">
     <br>
-    <img src="img/고양이.jpg" alt="">
-    <br> -->
-  야옹 주소는어딘지 모르게따..
+    <img src="/resources/img/고양이.jpg" alt="">
+    <img src="/resources/img/AdminCat.png" alt="">
 
-    <img src="src/main/webapp/resources/img/고양이.jpg" alt="">
 </div>
+
+<!--
+
+
+      <img src="img/고양이.jpg" alt="">
+      <br>
+<br>
+야옹 주소는어딘지 모르게따..
+src/main/webapp/resources/img/고양이.jpg
+<img src="/resources/img/고양이.jpg" alt="">
+
+-->
 
 </body>
 </html>
