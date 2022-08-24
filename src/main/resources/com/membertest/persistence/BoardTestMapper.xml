@@ -9,6 +9,21 @@
         from springboard
     </select>
 
+    <select id="getListWithPaging" resultType="com.memberTest.domain.BoardTestVO">
+<![CDATA[
+        select bno, title, writer, reg
+        from (select /*+Index_Desc(springboard pk_springboard)*/
+                  rownum r,
+                  bno,
+                  title,
+                  writer,
+                  reg
+              from springboard
+              where rownum <= #{pageNum} * #{listQty})
+        where r > (#{pageNum} - 1) * #{listQty}
+        ]]>
+    </select>
+
     <insert id="insertboard">
         insert into springboard
         values (board_seq.nextval, #{title}, #{content}, #{writer}, sysdate)
@@ -22,7 +37,12 @@
 
     <update id="modify">
         update springboard
-        set content=#{content}, title=#{title}
-        where bno=#{bno}
+        set content=#{content},
+            title=#{title}
+        where bno = #{bno}
     </update>
+
+    <select id="getTotal" resultType="int">
+        select count(*) from springboard
+    </select>
 </mapper>

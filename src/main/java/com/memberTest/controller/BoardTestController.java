@@ -1,6 +1,8 @@
 package com.memberTest.controller;
 
 import com.memberTest.domain.BoardTestVO;
+import com.memberTest.domain.Criteria;
+import com.memberTest.domain.PageDTO;
 import com.memberTest.service.BoardTestService;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,12 @@ public class BoardTestController {
     private BoardTestService service;
 
     @GetMapping("list")
-    public void list(Model model){
-        model.addAttribute("board",service.getAll());
+    public void list(Model model, Criteria cri){
+
+        //model.addAttribute("board",service.getAll());
+        model.addAttribute("board",service.getListWithPaging(cri));
+       // model.addAttribute("pager",service.getTotal(cri));
+        model.addAttribute("pager", new PageDTO(cri, service.getTotal(cri)));
     }
 
     @GetMapping("write")

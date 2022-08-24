@@ -1,6 +1,7 @@
 package com.memberTest.service;
 
 import com.memberTest.domain.BoardTestVO;
+import com.memberTest.domain.Criteria;
 import com.memberTest.persistence.BoardTestMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,12 @@ public class BoardTestServiceImpl implements BoardTestService{
     @Override
     public List<BoardTestVO> getAll() {
         return mapper.getAll();
+    }
+
+    @Override
+    public List<BoardTestVO> getListWithPaging(Criteria cri){
+
+        return mapper.getListWithPaging(cri);
     }
 
     @Override
@@ -36,5 +43,10 @@ public class BoardTestServiceImpl implements BoardTestService{
 
         board.setBno(bno);
         return mapper.modify(board);
+    }
+
+    @Override
+    public int getTotal(Criteria criteria) {
+        return mapper.getTotal(criteria);
     }
 }
