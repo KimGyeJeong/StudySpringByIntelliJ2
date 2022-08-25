@@ -11,6 +11,18 @@ http://www.springframework.org/schema/context
 
         ">
 
+    <!-- 0825 추가해주기 1. multipart... 2.다운로드 -->
+    <bean id="fileDown" class="com.upload.util.DownloadView"></bean>
+
+
+    <!-- 파일 업로드 -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <!-- 사이즈 최대 10mb.. value에 -1을 주면 제한을 주지않겠다라는 의미 -->
+        <property name="maxUploadSize" value="10485760"></property>
+        <!-- 인코딩 방식 -->
+        <property name="defaultEncoding" value="UTF-8"></property>
+    </bean>
+
     <!-- 커넥션 풀 세팅 -->
     <bean id="hikariConfig" class="com.zaxxer.hikari.HikariConfig">
 
@@ -32,7 +44,10 @@ http://www.springframework.org/schema/context
     </bean>
 
     <mybatis-spring:scan base-package="com.memberTest.persistence"/>
-
     <context:component-scan base-package="com.memberTest.service"/>
+
+    <mybatis-spring:scan base-package="com.upload.persistence"/>
+    <context:component-scan base-package="com.upload.service"/>
+
 
 </beans>

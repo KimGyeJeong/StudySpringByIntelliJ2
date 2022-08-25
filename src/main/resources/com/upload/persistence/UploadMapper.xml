@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.upload.persistence.UploadMapper">
+
+    <!-- springupanddownload -->
+    <insert id="insert">
+        insert into springupanddownload values (#{Img_OriginName}, #{Img_Type}, #{Img_UUID}, #{Img_Name}, #{Img_Save_Path})
+    </insert>
+
+</mapper>

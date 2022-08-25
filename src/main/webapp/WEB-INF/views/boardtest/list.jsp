@@ -89,6 +89,7 @@
 
             pagingForm.submit();
         })
+
     })
 
 </script>
