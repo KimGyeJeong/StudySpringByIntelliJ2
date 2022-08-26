@@ -1,5 +1,6 @@
 package com.upload.controller;
 
+import com.memberTest.domain.Criteria;
 import com.upload.domain.FileVO;
 import com.upload.service.UploadService;
 import lombok.extern.log4j.Log4j;
@@ -32,6 +33,7 @@ public class UploadController {
     }
 
     @PostMapping("uploadPro")
+    //@GetMapping("uploadPro")  get방식은 405 에러 -->  request method 'GET' not supported
     public void uploadPro(@RequestParam String msg, MultipartHttpServletRequest request, Model model) {
 
         int result = 0;
@@ -92,6 +94,18 @@ public class UploadController {
 
         log.info("downloadPost...");
 
+        ModelAndView mv = new ModelAndView("fileDown","downloadFile",f);
+        return mv;
+    }
+
+    @GetMapping("downloadhere")
+    public void downloadhere(Model model){
+
+        model.addAttribute("list",service.getAll());
+    }
+    @PostMapping("downloadhere2")
+    public ModelAndView downloadhere(String imgPath){
+        File f = new File(imgPath);
         ModelAndView mv = new ModelAndView("fileDown","downloadFile",f);
         return mv;
     }

@@ -3,12 +3,14 @@
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
        xmlns:mybatis-spring="http://mybatis.org/schema/mybatis-spring"
        xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:aop="http://www.springframework.org/schema/aop"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
         http://mybatis.org/schema/mybatis-spring
         http://mybatis.org/schema/mybatis-spring-1.2.xsd
 http://www.springframework.org/schema/context
 	http://www.springframework.org/schema/context/spring-context-4.3.xsd
-
+    http://www.springframework.org/schema/aop
+  	http://www.springframework.org/schema/aop/spring-aop-4.3.xsd
         ">
 
     <!-- 0825 추가해주기 1. multipart... 2.다운로드 -->
@@ -43,11 +45,18 @@ http://www.springframework.org/schema/context
         <property name="dataSource" ref="dataSource"></property>
     </bean>
 
+    <!--mapper 스캔은 mybatis, component(service, controller 등) 는 context:component 사용 -->
+
     <mybatis-spring:scan base-package="com.memberTest.persistence"/>
     <context:component-scan base-package="com.memberTest.service"/>
 
     <mybatis-spring:scan base-package="com.upload.persistence"/>
     <context:component-scan base-package="com.upload.service"/>
+
+    <!--0826 추가 -->
+    <!--aop 어노테이션 설정 -->
+    <context:component-scan base-package="com.aop.test"/>
+    <aop:aspectj-autoproxy></aop:aspectj-autoproxy>
 
 
 </beans>

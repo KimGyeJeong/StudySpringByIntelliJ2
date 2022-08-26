@@ -10,4 +10,8 @@
         insert into springupanddownload values (#{Img_OriginName}, #{Img_Type}, #{Img_UUID}, #{Img_Name}, #{Img_Save_Path})
     </insert>
 
+    <select id="getAll" resultType="com.upload.domain.FileVO">
+        select * from SPRINGUPANDDOWNLOAD
+    </select>
+
 </mapper>
