@@ -16,6 +16,10 @@ public class Criteria {
     private int pageNum;
     private int listQty;
 
+    //검색용 추가
+    private String sel;
+    private String keyword;
+
     public Criteria() {
         this(1, 10);
     }
@@ -23,6 +27,11 @@ public class Criteria {
     public Criteria(int pageNum, int listQty) {
         this.pageNum = pageNum;
         this.listQty = listQty;
+    }
+
+    //검색 조건을 배열로 만들어 보내기
+    public String[] getSelArr(){
+        return sel == null ? new String[]{} : sel.split("");
     }
 
     //url 링크에 붙히는 쿼리 스트링 자동 생성해주는 메서드

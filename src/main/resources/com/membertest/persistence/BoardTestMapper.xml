@@ -4,6 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.memberTest.persistence.BoardTestMapper">
+
+    <sql id="search">
+        <trim prefix="(" suffix=") and " prefixOverrides="or">
+            <foreach item="sel" collection="selArr">
+                <trim prefix="or">
+                    <choose>
+                        <when test="sel=='T'.toString()">title like '%'||#{keyword}||'%'</when>
+                        <when test="sel=='C'.toString()">content like '%'||#{keyword}||'%'</when>
+                        <when test="sel=='W'.toString()">writer like '%'||#{keyword}||'%'</when>
+                    </choose>
+                </trim>
+            </foreach>
+        </trim>
+    </sql>
+
     <select id="getAll" resultType="com.memberTest.domain.BoardTestVO">
         select *
         from springboard
@@ -21,7 +36,7 @@
               from springboard
               where rownum <= #{pageNum} * #{listQty})
         where r > (#{pageNum} - 1) * #{listQty}
-        ]]>
+]]>
     </select>
 
     <insert id="insertboard">
@@ -43,6 +58,21 @@
     </update>
 
     <select id="getTotal" resultType="int">
-        select count(*) from springboard
+        select count(*)
+        from springboard where
+        <include refid="search"></include>
+        bno>0
+    </select>
+
+    <select id="getList" resultType="com.memberTest.domain.BoardTestVO">
+        <![CDATA[
+        select bno, title, writer, reg
+        from(select /*+INDEX_DESC(springboard pk_springboard) */ rownum r, bno, title, writer, reg from springboard where
+        ]]>
+        <include refid="search"></include>
+        <![CDATA[
+        rownum <= #{pageNum}*#{listQty})
+        where r> (#{pageNum}-1) * #{listQty}
+                                                                                                                ]]>
     </select>
 </mapper>

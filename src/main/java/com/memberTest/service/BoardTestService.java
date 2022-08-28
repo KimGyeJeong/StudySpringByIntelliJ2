@@ -24,4 +24,8 @@ public interface BoardTestService {
 
     //글 개수 가져오기
     public int getTotal(Criteria criteria);
+
+    //글 전체 가져오기3
+    public List<BoardTestVO> getList(Criteria criteria);
+
 }

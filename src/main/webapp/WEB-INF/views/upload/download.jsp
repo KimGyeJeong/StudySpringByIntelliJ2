@@ -32,6 +32,7 @@
       console.log("downloadForm click!");
       downloadForm.submit();
     })
+
   })
 
 </script>

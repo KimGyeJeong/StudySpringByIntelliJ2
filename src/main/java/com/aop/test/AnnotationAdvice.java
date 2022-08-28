@@ -24,7 +24,7 @@ public class AnnotationAdvice {
         //after
         stopWatch.stop();
         log.info("===================================after=========================");
-        log.info("---------- 걸린시간 : "+ stopWatch.getLastTaskTimeMillis());
+        log.info("---------- 걸린시간 : "+ stopWatch.getLastTaskTimeMillis()+"ms");
         return obj;
     }
 

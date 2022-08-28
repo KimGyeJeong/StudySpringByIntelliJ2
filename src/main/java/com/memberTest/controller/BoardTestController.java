@@ -61,5 +61,13 @@ public class BoardTestController {
 
         return "redirect:/boardtest/list";
     }
+    @GetMapping("listpage")
+    public void listpage(Model model, Criteria criteria){
+        model.addAttribute("list",service.getList(criteria));
+
+        model.addAttribute("pager",new PageDTO(criteria,service.getTotal(criteria)));
+
+
+    }
 
 }

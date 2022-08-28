@@ -17,10 +17,10 @@
 <div>
     src/main/resources/img/고양이.jpg
     <br><br><br>
-    <br><img src="../src/main/webapp/resources/img/고양이.jpg">
+    <br><img src="../src/main/webapp/resources/img/고양이.jpg" width="200">
     <br>
-    <img src="/resources/img/고양이.jpg" alt="">
-    <img src="/resources/img/AdminCat.png" alt="">
+    <img src="/resources/img/고양이.jpg" alt="" width="200">
+    <img src="/resources/img/AdminCat.png" alt="" width="200">
 
 </div>
 

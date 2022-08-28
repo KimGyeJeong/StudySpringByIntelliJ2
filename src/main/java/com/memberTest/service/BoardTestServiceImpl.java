@@ -49,4 +49,9 @@ public class BoardTestServiceImpl implements BoardTestService{
     public int getTotal(Criteria criteria) {
         return mapper.getTotal(criteria);
     }
+
+    @Override
+    public List<BoardTestVO> getList(Criteria criteria) {
+        return mapper.getList(criteria);
+    }
 }
