@@ -13,6 +13,8 @@
     <context:component-scan base-package="com.memberTest.controller"/> <!-- Component Package 지정 -->
     <!--0825 추가 upload 패키지 추가함 -->
     <context:component-scan base-package="com.upload.controller"/> <!-- Component Package 지정 -->
+    <!--0829 추가 -->
+    <context:component-scan base-package="com.security.controller"/>
 
     <!-- 0823 추가 -->
     <mvc:resources mapping="/resources/**" location="/resources/" />
