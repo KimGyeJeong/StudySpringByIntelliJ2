@@ -46,16 +46,36 @@ public class SecurityMemberServiceImpl implements SecurityMemberService{
 
     @Override
     public MemberVO getMember(String id) {
-        return null;
+        return mapper.getMember(id);
     }
 
     @Override
     public int modifyMember(MemberVO member) {
-        return 0;
+
+        int result = 0;
+
+        MemberVO dbmember = getMember(member.getId());
+        if(bCryptPasswordEncoder.matches(member.getPw(), dbmember.getPw())){
+            result = 1;
+
+            mapper.updateMember(member);
+        }
+        return result;
     }
 
     @Override
     public int deleteMember(MemberVO member) {
-        return 0;
+
+        int result = 0;
+
+        MemberVO dbmember = getMember(member.getId());
+        if(bCryptPasswordEncoder.matches(member.getPw(), dbmember.getPw())){
+            result = 1;
+
+            mapper.deleteAuth(member.getId());
+            mapper.deleteMember(member.getId());
+        }
+
+        return result;
     }
 }
