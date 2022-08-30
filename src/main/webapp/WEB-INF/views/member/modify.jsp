@@ -27,7 +27,7 @@
             </tr>
             <tr>
                 <td>현재 비밀번호</td>
-                <td><input type="text" name="pw" id="" value="${member.pw}"></td>
+                <td><input type="text" name="pw" id=""></td>
             </tr>
             <tr>
                 <td>비밀번호 확인</td>
@@ -57,7 +57,7 @@
                 <td>${member.authList}</td>
             </tr>
             <tr>
-                <td>
+                <td colspan="2">
                     <input type="submit" value="수정하기">
                     <input type="reset" value="초기화">
                     <input type="button" value="메인으로 돌아가기" class="goMain">

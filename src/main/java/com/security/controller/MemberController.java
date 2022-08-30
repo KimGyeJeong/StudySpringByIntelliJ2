@@ -41,6 +41,7 @@ public class MemberController {
     public String modifyPro(MemberVO memberVO, Model model, Authentication authentication){
         memberVO.setId(((CustomUser)authentication.getPrincipal()).getUsername());
 
+        log.info("======"+memberVO.toString());
         int result = service.modifyMember(memberVO);
         model.addAttribute("result", result);
 

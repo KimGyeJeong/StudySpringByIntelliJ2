@@ -12,6 +12,9 @@
 </head>
 <body>
 <h1>modifyPro</h1>
+<div>
+    result : ${result}
+</div>
 
 </body>
 </html>
