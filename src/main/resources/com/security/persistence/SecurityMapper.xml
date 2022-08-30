@@ -1,0 +1,67 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.security.persistence.SecurityMapper">
+
+    <!-- 회원 추가(가입) -->
+    <insert id="addMember">
+        insert into membersec(id, pw, name, email, gender)
+        values (#{id}, #{pw}, #{name}, #{email}, #{gender})
+    </insert>
+    <!-- 회원 권한 추가 -->
+    <insert id="addAuth">
+        insert into membersec_auth
+        values (#{id}, #{auth})
+    </insert>
+
+    <!-- 회원정보 한명 가져오기 -->
+    <resultMap id="memberMap" type="com.security.domain.MemberVO">
+        <id property="id" column="id"></id>
+        <result property="id" column="id"></result>
+        <result property="pw" column="pw"/>
+        <result property="name" column="name"/>
+        <result property="email" column="email"/>
+        <result property="gender" column="gender"/>
+        <result property="reg" column="reg"/>
+        <result property="enabled" column="enabled"/>
+        <collection property="authList" resultMap="authMap"></collection>
+    </resultMap>
+
+    <resultMap id="authMap" type="com.security.domain.AuthVO">
+        <result property="id" column="id"></result>
+        <result property="auth" column="auth"></result>
+    </resultMap>
+
+    <select id="getMember" resultMap="memberMap">
+        select m.*, a.auth
+        from MEMBERSEC m,
+             MEMBERSEC_AUTH a
+        where m.ID = a.ID
+          and m.id = #{id}
+    </select>
+
+    <!-- 회원정보 수정 -->
+    <update id="updateMember">
+        update membersec
+        set name=#{name},
+            email=#{email}
+        where id = #{id}
+    </update>
+
+    <!-- 회원 삭제 -->
+    <delete id="deleteMember">
+        delete
+        from membersec
+        where id = #{id}
+    </delete>
+
+    <!-- 권한 삭제 -->
+    <delete id="deleteAuth">
+        delete
+        from membersec_auth
+        where id = #{id}
+    </delete>
+
+</mapper>

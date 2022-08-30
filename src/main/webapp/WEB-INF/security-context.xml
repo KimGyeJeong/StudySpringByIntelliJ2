@@ -14,21 +14,37 @@
     <!-- 시큐리티에서 우리가 원하는 형태의 회원테이블로 처리되기 위한 클래스 빈으로 등록 -->
     <bean id="customUserDetailsService" class="com.security.service.CustomUserDetailsService"></bean>
 
+    <!-- 접근 제한시 처리할 핸들러 빈으로 등록 -->
+    <bean id="customAccessDenied" class="com.security.service.CustomAccessDeniedHandler"></bean>
+
+    <!-- 로그인 성공시 처리 핸들러 빈으로 등록 -->
+    <bean id="loginSuccessHanler" class="com.security.service.CustomLoginSuccessHandler"></bean>
+
     <!-- 접근 제한 설정 -->
     <security:http>
 <!--  시큐리티는 인터셉터를 사용 함      -->
         <security:intercept-url pattern="/common/*" access="permitAll()"/>
         <security:intercept-url pattern="/member/*" access="hasRole('ROLE_MEMBER')"/>
         <security:intercept-url pattern="/admin/*" access="hasRole('ROLE_ADMIN')"/>
+
+        <!-- 접근제한시 403 페이지 대신 보여줄 페이지. 핸들러 설정 -->
+        <security:access-denied-handler ref="customAccessDenied"></security:access-denied-handler>
+
         <!-- 로그인 페이지 기본 값. 시큐리티가 설정해준 기본 페이지로 이동해줌
         <security:form-login /> -->
-        <security:form-login login-page="/common/login"/>
+        <!-- 0830 로그인성공시 핸들러 추가 -->
+        <security:form-login login-page="/common/login" authentication-success-handler-ref="loginSuccessHanler"/>
 
-        <security:logout logout-url="/logout" invalidate-session="true" delete-cookies="JSESSION_ID" logout-success-url="/common/main"/>
+        <security:logout logout-url="/logout" invalidate-session="true" delete-cookies="JSESSION_ID, remember-me" logout-success-url="/common/main"/>
+
+        <security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"></security:remember-me>
 
      </security:http>
 
     <security:authentication-manager>
+        <security:authentication-provider user-service-ref="customUserDetailsService">
+            <security:password-encoder ref="bcryptPasswordEncoder"></security:password-encoder>
+        </security:authentication-provider>
     </security:authentication-manager>
 
 </beans>

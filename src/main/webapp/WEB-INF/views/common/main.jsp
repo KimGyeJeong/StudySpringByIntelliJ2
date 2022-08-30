@@ -36,7 +36,14 @@
     <sec:authorize access="isAuthenticated()">
         <table>
             <tr>
-                <td><button onclick="window.location='/member/logout'">로그아웃</button></td>
+                <td>
+                    <form action="/logout" method="post">
+                        <input type="hidden" name="${_csrf.parameterName}"
+                               value="${_csrf.token}">
+                        <button>로그아웃</button>
+                    </form>
+
+                </td>
             </tr>
             <tr>
                 <td><button onclick="window.location='/member/mypage'">마이페이지</button></td>

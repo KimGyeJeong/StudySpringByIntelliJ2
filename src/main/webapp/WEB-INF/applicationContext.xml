@@ -53,6 +53,9 @@ http://www.springframework.org/schema/context
     <mybatis-spring:scan base-package="com.upload.persistence"/>
     <context:component-scan base-package="com.upload.service"/>
 
+    <mybatis-spring:scan base-package="com.security.persistence"/>
+    <context:component-scan base-package="com.security.service"/>
+
     <!--0826 추가 -->
     <!--aop 어노테이션 설정 -->
     <context:component-scan base-package="com.aop.test"/>
