@@ -10,6 +10,7 @@
 <html>
 <head>
     <title>read</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <body>
 
@@ -44,8 +45,64 @@
 </div>
 
 <div>
-    ${board.bno} :정상출력
+    ${board.bno} :정상출력. 글 고유번호
 </div>
+
+<!--댓글 div 시작 -->
+<div>
+    <!-- 작성된 댓글 -->
+    <div class="reply_container">
+        <div>
+            replyer :
+        </div>
+        <div>
+            reply :
+        </div>
+        <div>
+            reply_reg :
+        </div>
+    </div>
+    <!-- 댓글 작성하기 -->
+    <div>
+        <div>
+            <textarea name="reply" id="reply" placeholder="댓글작성" cols="30" rows="10"></textarea>
+        </div>
+        <div>
+            <input type="text" name="replyer" id="replyer" placeholder="작성자">
+        </div>
+        <div>
+            <button type="button" id="saveReplyBtn" >댓글 저장</button>
+        </div>
+    </div>
+</div>
+<!--댓글 div 끝 -->
+<script !src="">
+    $(document).ready(function(){
+        let bnoVal = "${board.bno}";
+        console.log(bnoVal);
+
+        //댓글 가져오기
+        showReplyList();
+
+        function showReplyList(){
+
+            console.log("Working!");
+
+            $.ajax({
+                type: "GET",
+                url: "/reply/list/" + bnoVal + ".json",
+                data : {bno:bnoVal},
+                success : function (result){
+                    console.log("success!!");
+                    console.log(result);
+                },
+                error : function (e){
+                    console.log(e);
+                }
+            })
+        }
+    })
+</script>
 
 </body>
 </html>
